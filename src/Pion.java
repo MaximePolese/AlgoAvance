@@ -4,7 +4,7 @@ public class Pion extends Case {
         super(joueur, posX, posY);
     }
     public void displayPion(Joueur joueur){
-        if (joueur == p1) {
+        if (joueur == Game.p1) {
             System.out.println("| X |");
         }
         else {
