@@ -6,9 +6,11 @@ public class Pion extends Case {
         this.joueur = joueur;
     }
 
+
     @Override
     public void displayCase(){
         if (joueur == 1) {
+
             System.out.println("| X |");
         }
         else {
