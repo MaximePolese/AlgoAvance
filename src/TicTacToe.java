@@ -17,18 +17,34 @@ public class TicTacToe implements Game {
 
     @Override
     public boolean isOver() {
-
-        return false;
+        if (board.colonne() || board.ligne() || board.diagonale1() || board.diagonale2()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void startGame(){
         board.displayBoard();
         while (!isOver()){
-            board.addPion(p1, p1.chooseCaseX(), p1.chooseCaseY());
-            board.displayBoard();
+            int x = p1.chooseCaseX();
+            int y = p1.chooseCaseY();
+            if (!board.checkCase(x, y)){
+                board.addPion(p1, x, y);
+                board.displayBoard();
+            } else {
+                System.out.println("c'est occupé");
+            }
 
-            board.addPion(p2, p2.chooseCaseX(), p2.chooseCaseY());
+
+            x = p2.chooseCaseX();
+            y = p2.chooseCaseY();
+            if (!board.checkCase(x, y)){
+            board.addPion(p2, x, y);
             board.displayBoard();
+            } else {
+                System.out.println("c'est occupé");
+            }
         }
     }
 

@@ -17,4 +17,8 @@ public class Pion extends Case {
             System.out.print("|  O  |");
         }
     }
+
+    public Joueur getJoueur() {
+        return joueur;
+    }
 }
