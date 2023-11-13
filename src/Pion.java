@@ -9,7 +9,7 @@ public class Pion extends Case {
 
     @Override
     public void displayCase() {
-        if (joueur == 1) {
+        if (GameState.tour1) {
             System.out.println("| X |");
         } else {
             System.out.println("| O |");
