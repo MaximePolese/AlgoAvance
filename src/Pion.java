@@ -9,10 +9,10 @@ public class Pion extends Case {
 
     @Override
     public void displayCase() {
-        if (GameState.tour1) {
-            System.out.println("| X |");
+        if (joueur.getId() == 1) {
+            System.out.print("| X |");
         } else {
-            System.out.println("| O |");
+            System.out.print("| O |");
         }
     }
 }

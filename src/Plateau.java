@@ -24,11 +24,6 @@ public class Plateau {
     }
 
     public void addPion(Joueur joueur, int posX, int posY) {
-       board[posX][posY] = new Pion(joueur, posX, posY);
+        board[posX][posY] = new Pion(joueur, posX, posY);
     }
-
-//    public boolean checkCase(int position) {
-//        System.out.println("WIP");
-//        return true;
-//    }
 }

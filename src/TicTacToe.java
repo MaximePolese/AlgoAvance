@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -13,35 +12,34 @@ public class TicTacToe {
         board.displayBoard();
         keyboard = new Scanner(System.in);
         result = GameState.tour1;
-        System.out.print("Enter player 1 name :");
+        System.out.print("Enter player 1 name : ");
         String name1 = keyboard.nextLine();
-        p1 = new Joueur(name1);
-        System.out.print("Enter player 2 name :");
+        p1 = new Joueur(name1, 1);
+        System.out.print("Enter player 2 name : ");
         String name2 = keyboard.nextLine();
-        p2 = new Joueur(name2);
+        p2 = new Joueur(name2, 2);
     }
 
     public void playGame() {
         while (result != GameState.gameOver) {
             if (result == GameState.tour1) {
-                System.out.print("Enter posX :");
+                System.out.print("Enter posX : ");
                 int posX = keyboard.nextInt();
-                System.out.print("Enter posY :");
+                System.out.print("Enter posY : ");
                 int posY = keyboard.nextInt();
                 board.addPion(p1, posX, posY);
                 board.displayBoard();
                 result = GameState.tour2;
             }
             if (result == GameState.tour2) {
-                System.out.print("Enter posX :");
+                System.out.print("Enter posX : ");
                 int posX = keyboard.nextInt();
-                System.out.print("Enter posY :");
+                System.out.print("Enter posY : ");
                 int posY = keyboard.nextInt();
                 board.addPion(p2, posX, posY);
                 board.displayBoard();
                 result = GameState.tour1;
             }
-
         }
     }
 
