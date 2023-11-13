@@ -11,10 +11,10 @@ public class Pion extends Case {
     public void displayCase(){
         if (joueur.getNumero() == 1) {
 
-            System.out.print("|   X  |");
+            System.out.print("|  X  |");
         }
         else if (joueur.getNumero() == 2){
-            System.out.print("|   O  |");
+            System.out.print("|  O  |");
         }
     }
 }
