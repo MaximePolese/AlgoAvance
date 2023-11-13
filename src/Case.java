@@ -7,6 +7,6 @@ public class Case {
         this.posY = posY;
     }
     public void displayCase(){
-        System.out.println("| case |");
+        System.out.print("| "+posX+", "+posY+" |");
     }
 }

@@ -11,26 +11,26 @@ public class TicTacToe implements Game {
 
     public TicTacToe () {
         board = new Plateau(3,3);
-        p1 = new Joueur("Edouard");
-        p2 = new Joueur("Maximilien");
-    }
-
-    @Override
-    public boolean nextTurn() {
-        return false;
+        p1 = new Joueur("Edouard", 1);
+        p2 = new Joueur("Maximilien", 2);
     }
 
     @Override
     public boolean isOver() {
-        /* si on a 3 formes similaires, ou 3 positions d'un même joueur qui sont sur une diagonales ou sur un
-        côté ou sur une ligne, alors la partie est Over*/
+
         return false;
     }
 
-    public Joueur getP1() {
-        return p1;
-    }
+    public void startGame(){
+        board.displayBoard();
+        while (!isOver()){
+            board.addPion(p1, p1.chooseCaseX(), p1.chooseCaseY());
+            board.displayBoard();
 
+            board.addPion(p2, p2.chooseCaseX(), p2.chooseCaseY());
+            board.displayBoard();
+        }
+    }
 
 
 

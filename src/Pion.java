@@ -9,12 +9,12 @@ public class Pion extends Case {
 
     @Override
     public void displayCase(){
-        if (joueur == 1) {
+        if (joueur.getNumero() == 1) {
 
-            System.out.println("| X |");
+            System.out.print("|   X  |");
         }
-        else {
-            System.out.println("| O |");
+        else if (joueur.getNumero() == 2){
+            System.out.print("|   O  |");
         }
     }
 }
