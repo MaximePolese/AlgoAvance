@@ -2,15 +2,11 @@ import java.util.ArrayList;
 
 public class TicTacToe implements Game {
     private Plateau board;
-
     private Joueur p1;
-
     private Joueur p2;
 
-
-
-    public TicTacToe () {
-        board = new Plateau(3,3);
+    public TicTacToe() {
+        board = new Plateau(3, 3);
         p1 = new Joueur("Edouard");
         p2 = new Joueur("Maximilien");
     }
@@ -32,14 +28,10 @@ public class TicTacToe implements Game {
     }
 
 
-
-
 //    @Override
 //    public ArrayList<Integer> getPossibleMoves(ArrayList<Integer> possibleMoves) {
 //        return possibleMoves.remove();
 //    }
-
-
 
 
 }
