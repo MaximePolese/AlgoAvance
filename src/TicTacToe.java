@@ -43,9 +43,6 @@ public class TicTacToe {
         }
     }
 
-    public Joueur getP1() {
-        return p1;
-    }
 //    @Override
 //    public boolean nextTurn() {
 //        return false;

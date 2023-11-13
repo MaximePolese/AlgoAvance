@@ -8,6 +8,6 @@ public class Case {
     }
 
     public void displayCase() {
-        System.out.print("| case |");
+        System.out.print("| " + posX + "," + posY + " |");
     }
 }
