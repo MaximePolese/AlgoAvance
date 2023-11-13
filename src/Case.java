@@ -1,7 +1,8 @@
 public class Case {
     private int posX;
     private int posY;
-    public Case(Joueur joueur, int posX, int posY) {
+
+    public Case(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
     }

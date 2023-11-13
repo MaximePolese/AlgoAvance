@@ -1,10 +1,14 @@
 public class Pion extends Case {
 
+    private Joueur joueur;
     public Pion(Joueur joueur, int posX, int posY) {
-        super(joueur, posX, posY);
+        super(posX, posY);
+        this.joueur = joueur;
     }
-    public void displayPion(Joueur joueur){
-        if (joueur == p1) {
+
+    @Override
+    public void displayCase(){
+        if (joueur == 1) {
             System.out.println("| X |");
         }
         else {
