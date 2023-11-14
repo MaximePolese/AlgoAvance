@@ -3,7 +3,7 @@ import java.util.List;
 
 public interface Game {
 
-    boolean isOver();
+    boolean isOver(Joueur joueur);
 
 //    ArrayList<Integer> getPossibleMoves();
 

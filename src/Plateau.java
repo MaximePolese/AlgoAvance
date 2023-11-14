@@ -31,54 +31,52 @@ public class Plateau {
         return board[positionX][positionY] instanceof Pion;
     }
 
-    public boolean diagonale1() {
-        int total = 0;
+    public boolean diagonale1(Joueur joueur) {
+        joueur.setTo0Score();
         for (int i = 0; i < board.length; i = i + 1) {
-            if (board[i][i] instanceof Pion) {
-                ((Pion) board[i][i]).getJoueur().getNumero();
-                total += 1;
+            if (board[i][i] instanceof Pion && ((Pion) board[i][i]).getJoueur() == joueur) {
+                joueur.incrementScore();
             }
         }
-        return total == board.length;
+        return joueur.getScore() == board.length;
     }
 
-    public boolean diagonale2() {
-        int total = 0;
+    public boolean diagonale2(Joueur joueur) {
+        joueur.setTo0Score();
         for (int i = 0; i < board.length; i = i + 1) {
-            if (board[board.length - i -1][i] instanceof Pion) {
-                total += 1;
+            if (board[board.length - i - 1][i] instanceof Pion && ((Pion) board[board.length - i - 1][i]).getJoueur() == joueur) {
+                joueur.incrementScore();
             }
         }
-        return total == board.length;
+        return joueur.getScore() == board.length;
     }
 
-    public boolean colonne() {
+    public boolean colonne(Joueur joueur) {
+        joueur.setTo0Score();
         boolean rs = false;
-        int total = 0;
         for (int i = 0; i < board.length; i = i + 1) {
             for (int j = 0; j < board[i].length; j = j + 1) {
-                if (board[i][j] instanceof Pion) {
-                    total += 1;
+                if (board[i][j] instanceof Pion && ((Pion) board[i][j]).getJoueur() == joueur) {
+                    joueur.incrementScore();
                 }
             }
-            if (total == board.length){
+            if (joueur.getScore() == board.length) {
                 rs = true;
             }
         }
         return rs;
     }
 
-
-    public boolean ligne() {
+    public boolean ligne(Joueur joueur) {
         boolean rs = false;
-        int total = 0;
+        joueur.setTo0Score();
         for (int i = 0; i < board.length; i = i + 1) {
             for (int j = 0; j < board[i].length; j = j + 1) {
-                if (board[j][i] instanceof Pion) {
-                    total += 1;
+                if (board[j][i] instanceof Pion && ((Pion) board[j][i]).getJoueur() == joueur) {
+                    joueur.incrementScore();
                 }
             }
-            if (total == board.length){
+            if (joueur.getScore() == board.length) {
                 rs = true;
             }
         }
