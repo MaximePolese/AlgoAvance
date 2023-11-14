@@ -64,5 +64,6 @@ public class Puissance4 implements Game{
             tourJoueur(p1);
             tourJoueur(p2);
         }
+        System.out.println("ok");
     }
 }
