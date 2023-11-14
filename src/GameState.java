@@ -1,6 +1,5 @@
 public enum GameState {
     RUN,
-    ISOVER,
-    other,
+    ISOVER
 }
 
