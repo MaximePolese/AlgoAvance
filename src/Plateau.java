@@ -35,6 +35,14 @@ public class Plateau {
         addPion(joueur, x, positionY);
     }
 
+    public void addPion4(Joueur joueur, int positionY) {
+        int positionX = 0;
+        while ((positionX < (board.length - 1) && !checkCase(positionX + 1, positionY))) {
+            positionX = positionX + 1;
+        }
+        addPion(joueur, positionX, positionY);
+    }
+
     public boolean checkCase(int positionX, int positionY) {
         return board[positionX][positionY] instanceof Pion;
     }
