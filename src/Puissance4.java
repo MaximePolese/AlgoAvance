@@ -8,11 +8,11 @@ public class Puissance4 implements Game{
     private Scanner clavier;
 
     public Puissance4() {
-        board = new Plateau(3, 3);
+        board = new Plateau(6, 7);
         p1 = new Joueur("Edouard", 1);
         p2 = new Joueur("Maximilien", 2);
         clavier = new Scanner(System.in);
-        result = GameState.run;
+        result = GameState.RUN;
     }
 
     public int chooseCaseX(Joueur joueur) {
@@ -35,9 +35,9 @@ public class Puissance4 implements Game{
 
     @Override
     public boolean isOver(Joueur joueur) {
-        if (board.colonne(joueur) || board.ligne(joueur) || board.diagonale1(joueur) || board.diagonale2(joueur)) {
+        if (board.colonne(joueur, 4) || board.ligne(joueur, 4) || board.diagonale1(joueur, 4) || board.diagonale2(joueur, 4)) {
             System.out.println(joueur.getName() + " WIN !!!!!!!");
-            result = GameState.isover;
+            result = GameState.ISOVER;
             return true;
         } else {
             return false;
@@ -45,11 +45,10 @@ public class Puissance4 implements Game{
     }
 
     private void tourJoueur(Joueur joueur) {
-        if (result != GameState.isover ) {
+        if (result != GameState.ISOVER ) {
             int x = chooseCaseX(joueur);
-            int y = chooseCaseY(joueur);
-            if (!board.checkCase(x, y)) {
-                board.addPion(joueur, x, y);
+            if (!board.checkCase(0, x)) {
+                board.addPionPuissance4(joueur, x);
                 board.displayBoard();
                 isOver(joueur);
             } else {
@@ -60,10 +59,9 @@ public class Puissance4 implements Game{
 
     public void playGame() {
         board.displayBoard();
-        while (result != GameState.isover) {
+        while (result != GameState.ISOVER) {
             tourJoueur(p1);
             tourJoueur(p2);
         }
-        System.out.println("ok");
     }
 }

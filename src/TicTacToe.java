@@ -12,7 +12,7 @@ public class TicTacToe implements Game {
         p1 = new Joueur("Edouard", 1);
         p2 = new Joueur("Maximilien", 2);
         clavier = new Scanner(System.in);
-        result = GameState.run;
+        result = GameState.RUN;
     }
 
     public int chooseCaseX(Joueur joueur) {
@@ -35,9 +35,9 @@ public class TicTacToe implements Game {
 
     @Override
     public boolean isOver(Joueur joueur) {
-        if (board.colonne(joueur) || board.ligne(joueur) || board.diagonale1(joueur) || board.diagonale2(joueur)) {
+        if (board.colonne(joueur, board.getBoard().length) || board.ligne(joueur, board.getBoard().length) || board.diagonale1(joueur, board.getBoard().length) || board.diagonale2(joueur, board.getBoard().length)) {
             System.out.println(joueur.getName() + " WIN !!!!!!!");
-            result = GameState.isover;
+            result = GameState.ISOVER;
             return true;
         } else {
             return false;
@@ -45,7 +45,7 @@ public class TicTacToe implements Game {
     }
 
     private void tourJoueur(Joueur joueur) {
-        if (result != GameState.isover ) {
+        if (result != GameState.ISOVER ) {
             int x = chooseCaseX(joueur);
             int y = chooseCaseY(joueur);
             if (!board.checkCase(x, y)) {
@@ -60,7 +60,7 @@ public class TicTacToe implements Game {
 
     public void playGame() {
         board.displayBoard();
-        while (result != GameState.isover) {
+        while (result != GameState.ISOVER) {
             tourJoueur(p1);
             tourJoueur(p2);
         }
