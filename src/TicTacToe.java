@@ -1,16 +1,36 @@
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TicTacToe implements Game {
     private Plateau board;
     private Joueur p1;
     private Joueur p2;
     private GameState result;
+    private Scanner clavier;
 
     public TicTacToe() {
         board = new Plateau(3, 3);
         p1 = new Joueur("Edouard", 1);
         p2 = new Joueur("Maximilien", 2);
-        result = GameState.tour1;
+        clavier = new Scanner(System.in);
+        result = GameState.run;
+    }
+
+    public int chooseCaseX(Joueur joueur) {
+        int xChoice = -1;
+        while(xChoice < 0 || xChoice > board.getBoard().length) {
+            System.out.print("choix x joueur " + joueur.getNumero() + " :");
+            xChoice = clavier.nextInt();
+        }
+        return xChoice;
+    }
+
+    public int chooseCaseY(Joueur joueur) {
+        int yChoice = -1;
+        while(!(yChoice > -1 && yChoice < board.getBoard().length)) {
+            System.out.print("choix y joueur " + joueur.getNumero() + " :");
+            yChoice = clavier.nextInt();
+        }
+        return yChoice;
     }
 
     @Override
@@ -25,47 +45,24 @@ public class TicTacToe implements Game {
     }
 
     private void tourJoueur(Joueur joueur) {
-        if (result != GameState.isover && result == GameState.tour2) {
-            int x = p2.chooseCaseX();
-            int y = p2.chooseCaseY();
+        if (result != GameState.isover ) {
+            int x = chooseCaseX(joueur);
+            int y = chooseCaseY(joueur);
             if (!board.checkCase(x, y)) {
-                board.addPion(p2, x, y);
+                board.addPion(joueur, x, y);
                 board.displayBoard();
-                result = GameState.tour1;
-                isOver(p2);
+                isOver(joueur);
             } else {
                 System.out.println("c'est occupé");
             }
         }
     }
 
-    public void startGame() {
+    public void playGame() {
         board.displayBoard();
         while (result != GameState.isover) {
-            if (result != GameState.isover && result == GameState.tour1) {
-                int x = p1.chooseCaseX();
-                int y = p1.chooseCaseY();
-                if (!board.checkCase(x, y)) {
-                    board.addPion(p1, x, y);
-                    board.displayBoard();
-                    result = GameState.tour2;
-                    isOver(p1);
-                } else {
-                    System.out.println("c'est occupé");
-                }
-            }
-            if (result != GameState.isover && result == GameState.tour2) {
-                int x = p2.chooseCaseX();
-                int y = p2.chooseCaseY();
-                if (!board.checkCase(x, y)) {
-                    board.addPion(p2, x, y);
-                    board.displayBoard();
-                    result = GameState.tour1;
-                    isOver(p2);
-                } else {
-                    System.out.println("c'est occupé");
-                }
-            }
+            tourJoueur(p1);
+            tourJoueur(p2);
         }
     }
 }
