@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class TicTacToe implements Game {
+public class TicTacToe {
     private Plateau board;
     private Joueur p1;
     private Joueur p2;
@@ -33,7 +33,6 @@ public class TicTacToe implements Game {
         return yChoice;
     }
 
-    @Override
     public boolean isOver(Joueur joueur, int posY) {
         if (board.colonne(joueur, board.getBoard().length) || board.ligne(joueur, board.getBoard().length) || board.diagonale1(joueur, board.getBoard().length) || board.diagonale2(joueur, board.getBoard().length)) {
             System.out.println(joueur.getName() + " WIN !!!!!!!");

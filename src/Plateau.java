@@ -25,6 +25,15 @@ public class Plateau {
     public void displayBoard() {
         for (int i = 0; i < board.length; i = i + 1) {
             for (int j = 0; j < board[i].length; j = j + 1) {
+                board[i][j].displayCase();
+            }
+            System.out.println();
+        }
+    }
+
+    public void displayBoard4() {
+        for (int i = 0; i < board.length; i = i + 1) {
+            for (int j = 0; j < board[i].length; j = j + 1) {
                 board[i][j].displayCase4();
             }
             System.out.println();

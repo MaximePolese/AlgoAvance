@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Puissance4 implements Game{
+public class Puissance4 {
     private Plateau board;
     private Joueur p1;
     private Joueur p2;
@@ -24,7 +24,7 @@ public class Puissance4 implements Game{
         return yChoice;
     }
 
-    @Override
+
     public boolean isOver(Joueur joueur, int posY) {
         if (board.colonne(joueur, 4) || board.ligne(joueur, 4) || board.diagonale3(joueur, 4, posY) ) {
             System.out.println(joueur.getName() + " WIN !!!!!!!");
@@ -40,7 +40,7 @@ public class Puissance4 implements Game{
             int y = chooseColonne(joueur);
             if (!board.checkCase(0, y)) {
                 board.addPionPuissance4(joueur, y);
-                board.displayBoard();
+                board.displayBoard4();
                 isOver(joueur, y);
             } else {
                 System.out.println("c'est occupé");
@@ -49,7 +49,7 @@ public class Puissance4 implements Game{
     }
 
     public void playGame() {
-        board.displayBoard();
+        board.displayBoard4();
         while (result != GameState.ISOVER) {
             tourJoueur(p1);
             tourJoueur(p2);

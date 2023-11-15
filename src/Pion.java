@@ -16,6 +16,15 @@ public class Pion extends Case {
         }
     }
 
+    @Override
+    public void displayCase() {
+        if (joueur.getNumero() == 1) {
+            System.out.print(ANSI_RED + "|  X  |" + ANSI_RESET);
+        } else if (joueur.getNumero() == 2) {
+            System.out.print(ANSI_GREEN + "|  O  |" + ANSI_RESET);
+        }
+    }
+
     public Joueur getJoueur() {
         return joueur;
     }
