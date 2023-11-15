@@ -34,7 +34,7 @@ public class TicTacToe implements Game {
     }
 
     @Override
-    public boolean isOver(Joueur joueur) {
+    public boolean isOver(Joueur joueur, int posY) {
         if (board.colonne(joueur, board.getBoard().length) || board.ligne(joueur, board.getBoard().length) || board.diagonale1(joueur, board.getBoard().length) || board.diagonale2(joueur, board.getBoard().length)) {
             System.out.println(joueur.getName() + " WIN !!!!!!!");
             result = GameState.ISOVER;
@@ -51,7 +51,7 @@ public class TicTacToe implements Game {
             if (!board.checkCase(x, y)) {
                 board.addPion(joueur, x, y);
                 board.displayBoard();
-                isOver(joueur);
+                isOver(joueur,y);
             } else {
                 System.out.println("c'est occupé");
             }

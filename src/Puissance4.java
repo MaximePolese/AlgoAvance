@@ -25,8 +25,8 @@ public class Puissance4 implements Game{
     }
 
     @Override
-    public boolean isOver(Joueur joueur) {
-        if (board.colonne(joueur, 4) || board.ligne(joueur, 4) || board.diagonale1(joueur, 4) || board.diagonale2(joueur, 4)) {
+    public boolean isOver(Joueur joueur, int posY) {
+        if (board.colonne(joueur, 4) || board.ligne(joueur, 4) || board.diagonale3(joueur, 4, posY) ) {
             System.out.println(joueur.getName() + " WIN !!!!!!!");
             result = GameState.ISOVER;
             return true;
@@ -41,7 +41,7 @@ public class Puissance4 implements Game{
             if (!board.checkCase(0, y)) {
                 board.addPionPuissance4(joueur, y);
                 board.displayBoard();
-                isOver(joueur);
+                isOver(joueur, y);
             } else {
                 System.out.println("c'est occupé");
             }

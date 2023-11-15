@@ -10,4 +10,7 @@ public class Case {
     public void displayCase() {
         System.out.print("| " + posX + ":" + posY + " |");
     }
+    public void displayCase4() {
+        System.out.print("| " + posY + " |");
+    }
 }

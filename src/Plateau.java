@@ -1,8 +1,9 @@
 public class Plateau {
     private Case[][] board;
-
+    private int lastPosX;
     public Plateau(int nbCaseHauteur, int nbcaseLargeur) {
         initBoard(nbCaseHauteur, nbcaseLargeur);
+        this.lastPosX = 0;
     }
 
     private void initBoard(int nbCaseHauteur, int nbcaseLargeur) {
@@ -14,10 +15,17 @@ public class Plateau {
         }
     }
 
+    public void test(Joueur joueur){
+        addPion(joueur, 2,0);
+        addPion(joueur, 2,1);
+        addPion(joueur, 3,2);
+        addPion(joueur, 4,3);
+    }
+
     public void displayBoard() {
         for (int i = 0; i < board.length; i = i + 1) {
             for (int j = 0; j < board[i].length; j = j + 1) {
-                board[i][j].displayCase();
+                board[i][j].displayCase4();
             }
             System.out.println();
         }
@@ -32,15 +40,8 @@ public class Plateau {
         while (x<board.length-1 && !checkCase(x+1, positionY)){
             x = x+1;
         }
+        this.lastPosX = x;
         addPion(joueur, x, positionY);
-    }
-
-    public void addPion4(Joueur joueur, int positionY) {
-        int positionX = 0;
-        while ((positionX < (board.length - 1) && !checkCase(positionX + 1, positionY))) {
-            positionX = positionX + 1;
-        }
-        addPion(joueur, positionX, positionY);
     }
 
     public boolean checkCase(int positionX, int positionY) {
@@ -67,31 +68,38 @@ public class Plateau {
         return joueur.getScore() == size;
     }
 
-//    public boolean diagonale3(Joueur joueur, int size, int positionX, int positionY) {
-//        Case[] tableauDiagonale;
-//        boolean rs = false;
-//
-//        while (positionX<board.length && positionY < board[0].length){
-//            if (board[board.length - i - 1][i] instanceof Pion && ((Pion) board[board.length - i - 1][i]).getJoueur() == joueur) {
-//                joueur.incrementScore();
-//            }
-//        }
-//
-//
-//
-//        if (board[i][j] instanceof Pion && ((Pion) board[i][j]).getJoueur() == joueur) {
-//            joueur.incrementScore();
-//        } else {
-//            joueur.setScoreTo0();
-//        }
-//
-//
-//        if (joueur.getScore() == size) {
-//            rs = true;
-//        }
-//
-//        return rs;
-//    }
+    public boolean diagonale3(Joueur joueur, int size, int positionY) {
+        boolean rs = false;
+        int sum = lastPosX + positionY;
+        int dif = lastPosX - positionY;
+
+        for (int i = 0; i < board.length; i = i + 1) {
+            for (int j = 0; j < board[0].length; j = j + 1) {
+                if ((i+j == sum) && (board[i][j] instanceof Pion) && (((Pion) board[i][j]).getJoueur() == joueur) ) {
+                    joueur.incrementScore();
+                } else if(i+j == sum){
+                    joueur.setScoreTo0();
+                }
+                if (joueur.getScore() == size) {
+                    rs = true;
+                }
+            }
+        }
+
+        for (int i = 0; i < board.length; i = i + 1) {
+            for (int j = 0; j < board[0].length; j = j + 1) {
+                if ((i-j == dif) && (board[i][j] instanceof Pion) && (((Pion) board[i][j]).getJoueur() == joueur)) {
+                    joueur.incrementScore();
+                } else if (i-j == dif) {
+                    joueur.setScoreTo0();
+                }
+                if (joueur.getScore() == size) {
+                    rs = true;
+                }
+            }
+        }
+        return rs;
+    }
 
     public boolean ligne(Joueur joueur, int size) {
         boolean rs = false;
