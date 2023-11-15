@@ -4,34 +4,38 @@ public class TicTacToe {
     private Plateau board;
     private Joueur p1;
     private Joueur p2;
+
+    private Joueur currentJoueur;
     private GameState result;
-    private Scanner clavier;
 
     public TicTacToe() {
         board = new Plateau(3, 3);
         p1 = new Joueur("Edouard", 1);
-        p2 = new Joueur("Maximilien", 2);
-        clavier = new Scanner(System.in);
+        p2 = new RandomBot("Skynet", 2);
+        this.currentJoueur = p1;
         result = GameState.RUN;
     }
 
-    public int chooseCaseX(Joueur joueur) {
-        int xChoice = -1;
-        while(xChoice < 0 || xChoice > board.getBoard().length) {
-            System.out.print("choix x joueur " + joueur.getNumero() + " :");
-            xChoice = clavier.nextInt();
+    public Joueur nextPlayer() {
+        if (this.currentJoueur.getNumero() == 1) {
+            return this.p2;
+        } else {
+            return this.p1;
         }
-        return xChoice;
     }
 
-    public int chooseCaseY(Joueur joueur) {
-        int yChoice = -1;
-        while(!(yChoice > -1 && yChoice < board.getBoard().length)) {
-            System.out.print("choix y joueur " + joueur.getNumero() + " :");
-            yChoice = clavier.nextInt();
-        }
-        return yChoice;
+    void testBot() {
+        board.addPion(p2, 0, 0);
+        board.addPion(p2, 0, 1);
+        board.addPion(p2, 0, 2);
+        board.addPion(p2, 1, 0);
+        board.addPion(p2, 1, 1);
+        board.addPion(p2, 1, 2);
+        board.addPion(p2, 2, 0);
+        board.addPion(p2, 2, 1);
+        board.addPion(p2, 2, 2);
     }
+
 
     public boolean isOver(Joueur joueur, int posY) {
         if (board.colonne(joueur, board.getBoard().length) || board.ligne(joueur, board.getBoard().length) || board.diagonale1(joueur, board.getBoard().length) || board.diagonale2(joueur, board.getBoard().length)) {
@@ -44,13 +48,18 @@ public class TicTacToe {
     }
 
     private void tourJoueur(Joueur joueur) {
-        if (result != GameState.ISOVER ) {
-            int x = chooseCaseX(joueur);
-            int y = chooseCaseY(joueur);
+        if (result != GameState.ISOVER) {
+            result = GameState.UNVALID_ANSWER;
+        }
+        while (!(result == GameState.VALID_ANSWER || result == GameState.ISOVER)) {
+            int[] coords = joueur.getMove();
+            int x = coords[0];
+            int y = coords[1];
             if (!board.checkCase(x, y)) {
                 board.addPion(joueur, x, y);
                 board.displayBoard();
-                isOver(joueur,y);
+                result = GameState.VALID_ANSWER;
+                isOver(joueur, y);
             } else {
                 System.out.println("c'est occupé");
             }
@@ -58,10 +67,31 @@ public class TicTacToe {
     }
 
     public void playGame() {
+
+//        //test a supprimer
+//        if (p2 instanceof Bot){
+//            ((Bot) p2).getAllEmptyCase(this.getBoard());
+//            System.out.println(((Bot) p2).scoreOnBoard(this));
+//        }
+//        //fin test a suprimer
+
         board.displayBoard();
         while (result != GameState.ISOVER) {
+
             tourJoueur(p1);
             tourJoueur(p2);
         }
+    }
+
+    public Joueur getP1() {
+        return p1;
+    }
+
+    public Plateau getBoard() {
+        return board;
+    }
+
+    public Joueur getP2() {
+        return p2;
     }
 }

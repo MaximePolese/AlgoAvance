@@ -1,5 +1,7 @@
 public enum GameState {
     RUN,
-    ISOVER
+    ISOVER,
+    VALID_ANSWER,
+    UNVALID_ANSWER
 }
 

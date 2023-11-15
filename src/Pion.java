@@ -1,32 +1,32 @@
 public class Pion extends Case {
 
-    private Joueur joueur;
+    private Joueur owner;
 
     public Pion(Joueur joueur, int posX, int posY) {
         super(posX, posY);
-        this.joueur = joueur;
+        this.owner = joueur;
     }
 
     @Override
     public void displayCase4() {
-        if (joueur.getNumero() == 1) {
+        if (owner.getNumero() == 1) {
             System.out.print(ANSI_RED + "| X |" + ANSI_RESET);
-        } else if (joueur.getNumero() == 2) {
+        } else if (owner.getNumero() == 2) {
             System.out.print(ANSI_GREEN + "| O |" + ANSI_RESET);
         }
     }
 
     @Override
     public void displayCase() {
-        if (joueur.getNumero() == 1) {
+        if (owner.getNumero() == 1) {
             System.out.print(ANSI_RED + "|  X  |" + ANSI_RESET);
-        } else if (joueur.getNumero() == 2) {
+        } else if (owner.getNumero() == 2) {
             System.out.print(ANSI_GREEN + "|  O  |" + ANSI_RESET);
         }
     }
 
-    public Joueur getJoueur() {
-        return joueur;
+    public Joueur getOwner() {
+        return owner;
     }
 
     public static final String ANSI_RESET = "\u001B[0m";
